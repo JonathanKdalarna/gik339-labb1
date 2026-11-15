@@ -4,6 +4,12 @@
 
 // Uppgift 2 - Variabler och scope
 
+// Uppgift 2 - Variabler och scope
+
+// console.log(blockLet);   // kraschar, finns inte före blocket
+// console.log(blockConst); // kraschar, finns inte före blocket
+// console.log(blockVar);   // undefined, var hissas men har inget värde än
+
 {
   let blockLet = 'let i blocket';
   const blockConst = 'const i blocket';
@@ -15,9 +21,8 @@
 }
 
 console.log(blockVar); // funkar, var ligger kvar
-// console.log(blockLet);   // fel
-// console.log(blockConst); // fel
-
+// console.log(blockLet);   // fel, let är block-scopad
+// console.log(blockConst); // fel, const är block-scopad
 
 /*
 Reflektion uppgift 2:
@@ -30,8 +35,9 @@ let kan tilldelas ett nytt värde medan const inte kan tilldelas om.
 
 Om console.log används före deklarationen av var kan värdet bli undefined
 på grund av hoisting. För let och const får man ReferenceError om man
-försöker använda dem före deklarationen eftersom de befinner sig i
-Temporal Dead Zone.
+försöker använda dem före deklarationen. Jag testade detta genom att logga
+alla tre före blocket. blockVar blev undefined, medan blockLet och
+blockConst kraschade, så jag kommenterade bort dem.
 
 Inuti blocket fungerar alla tre variablerna. Efter blocket fungerar var,
 men inte let och const.
@@ -158,8 +164,12 @@ Test 3:
 3 är ett nummer men "num1" är en sträng. Resultatet blir undefined.
 
 Test 4:
--5 och num1 skickas in. num1 har värdet 0. Båda är nummer och summan
-blir -5.
+-5 och num1 skickas in. num1 får värdet -5 och num2 får värdet 0.
+num1 == 0 ger false. num2 === '0' ger false eftersom 0 är number och
+'0' är string. num2 === 0 ger true. num1 == NaN ger false eftersom NaN
+aldrig är lika med något. Ternary skriver ut truthy eftersom -5 är
+truthy. If-villkoret stämmer eftersom båda är number och ingen är null,
+undefined eller NaN. Funktionen returnerar -5 + 0 vilket ger -5.
 
 Test 5:
 arg1 har inget värde och är därför undefined. Resultatet blir undefined.
@@ -168,7 +178,10 @@ Test 6:
 Inga argument skickas in. Båda parametrarna blir undefined.
 Resultatet blir undefined.
 
-num1 är fortfarande 0 eftersom den deklarerades med const.
-sum får värdet false från början och ändras aldrig eftersom inget anrop
-returnerar ett värde som sparas i sum.
+num1 är fortfarande 0. Det beror inte på att den deklarerades med const,
+för den hade varit 0 med let också. Det beror på att num1 aldrig tilldelas
+ett nytt värde, och parametern inuti funktionen är en egen kopia.
+
+sum skrivs över i varje test. Test 6 anropar add() utan argument och
+returnerar undefined, så sum blir undefined till slut.
 */
