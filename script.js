@@ -4,7 +4,6 @@
 
 // Uppgift 2 - Variabler och scope
 
-// Uppgift 2 - Variabler och scope
 
 // console.log(blockLet);   // kraschar, finns inte före blocket
 // console.log(blockConst); // kraschar, finns inte före blocket
