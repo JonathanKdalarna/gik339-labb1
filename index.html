@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIK339 - Labb 1</title>
+  <!--
+    Reflektion uppgift 1:
+
+    Vart man lägger script-taggen spelar roll. Om den ligger i head utan defer
+    så körs scriptet innan body är klar, och då finns inte elementen där än.
+    Då kan det bli fel när koden ska komma åt dem. Lägger man scriptet längst
+    ner i body så är allt redan laddat, det är enklare.
+
+    defer gör så att scriptet laddas samtidigt som sidan, men körs först när
+    sidan är klar. Då kan man ha det i head utan att det strular.
+  -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Labb 1 – JavaScript grunder</h1>
+</body>
+</html>
